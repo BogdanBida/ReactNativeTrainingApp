@@ -1,4 +1,4 @@
-import { Card, Center, FlatList, Spinner, Text } from "native-base";
+import { Center, FlatList, Heading, Spinner } from "native-base";
 import React from "react";
 import IPostDTO from "../../../models/post-dto";
 import Post from "./Post";
@@ -14,19 +14,25 @@ const getImgColor = () => Math.floor(Math.random() * 16777215).toString(16);
 
 export default function PostList({ posts, style, isLoaded }: IPostListProps) {
     return isLoaded ? (
-        <FlatList
-            data={posts.map((post) => ({
-                ...post,
-                imgColor: getImgColor(),
-            }))}
-            renderItem={({ item }) => <Post {...item} />}
-            style={[styles.flatList, style]}
-            keyExtractor={(item, index) => `${item.id}_${index}`}
-            initialNumToRender={5}
-        />
+        posts && posts.length ? (
+            <FlatList
+                data={posts.map((post) => ({
+                    ...post,
+                    imgColor: getImgColor(),
+                }))}
+                renderItem={({ item }) => <Post {...item} />}
+                style={[styles.flatList, style]}
+                keyExtractor={(item, index) => `${item.id}_${index}`}
+                initialNumToRender={5}
+            />
+        ) : (
+            <Center flex={1}>
+                <Heading size="lg">Posts not found {":("}</Heading>
+            </Center>
+        )
     ) : (
         <Center flex={1}>
-            <Spinner flex={1} size="lg" margin="auto"/>
+            <Spinner flex={1} size="lg" margin="auto" />
         </Center>
     );
 }
