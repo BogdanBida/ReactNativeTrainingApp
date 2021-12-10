@@ -22,7 +22,7 @@ export default function PostList({ posts, style, isLoaded }: IPostListProps) {
             renderItem={({ item }) => <Post {...item} />}
             style={[styles.flatList, style]}
             keyExtractor={(item, index) => `${item.id}_${index}`}
-            minW="80"
+            initialNumToRender={5}
         />
     ) : (
         <Spinner flex={1} size="lg" margin="auto"/>

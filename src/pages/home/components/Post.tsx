@@ -9,7 +9,6 @@ interface IPostProps extends IPostDTO {
 export default function Post({ title, body, id, userId, imgColor }: IPostProps) {
     return (
         <Box
-            maxW="80"
             rounded="lg"
             overflow="hidden"
             borderColor="coolGray.200"

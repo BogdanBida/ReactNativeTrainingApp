@@ -1,4 +1,4 @@
-import { Box, Center, Flex, Heading, HStack, Text } from "native-base";
+import { Box, Flex } from "native-base";
 import React, { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import IPageComponentProps from "../../shared/interfaces/base/INavigationProps";
@@ -10,12 +10,13 @@ import { ApiEndpoints } from "../../enums/api-endpoints.enum";
 import IPostDTO from "../../models/post-dto";
 import SearchForm from "./components/SearchForm";
 import ISearchParams from "./interfaces/search-params";
+import { MENU_NAVIGATION_ITEMS } from "./constants/nav-menu";
 
 interface IHomeScreenProps extends IPageComponentProps {}
 
 const apiService = new ApiService();
 
-const HomeScreen = ({ navigation }: IHomeScreenProps) => {
+export default function HomeScreen({ navigation }: IHomeScreenProps) {
     const [posts, setPosts] = useState<IPostDTO[]>([]);
     const [isLoaded, setIsLoaded] = useState(false);
     const [searchParams, setSearchParams] = useState<ISearchParams>({});
@@ -30,32 +31,50 @@ const HomeScreen = ({ navigation }: IHomeScreenProps) => {
 
     return (
         <Flex flex={1} {...CONTAINER_THEME} justifyContent="space-between" flexDirection="row">
-            <Flex flexDirection="column" justifyContent="space-between">
-                <Heading size="lg" margin="5">
-                    Training application
-                </Heading>
-                <RoundedButton
-                    onPress={() => navigation.navigate("Settings")}
-                    iconName="settings"
-                    style={{ margin: 16, marginRight: "auto" }}
-                />
-            </Flex>
-            <Center>
-                <SearchForm onSearch={(searchParams) => setSearchParams(searchParams)} />
-            </Center>
-            <Box
+            <Flex
+                flexDirection="column"
+                alignItems="center"
+                justifyContent="flex-end"
+                style={styles.leftMenu}
                 _dark={{
-                    backgroundColor: "blueGray.800",
-                    shadow: 10,
+                    backgroundColor: "blueGray.800:alpha.40",
+                    shadow: 6,
                 }}
                 _light={{
+                    backgroundColor: "blueGray.100:alpha.20",
                     shadow: 5,
                 }}
             >
+                <RoundedButton
+                    onPress={() => {}}
+                    iconName="magnifier"
+                    size="sm"
+                    containerPadding="2.5"
+                    style={[styles.navBtn, { marginVertical: "auto" }]}
+                />
+                {MENU_NAVIGATION_ITEMS.map((menuItemData) => (
+                    <RoundedButton
+                        onPress={() => navigation.navigate(menuItemData.destination)}
+                        {...menuItemData.btnOptions}
+                        style={styles.navBtn}
+                    />
+                ))}
+            </Flex>
+            {/* <Center>
+                <SearchForm onSearch={(searchParams) => setSearchParams(searchParams)} />
+            </Center> */}
+            <Box flex={1}>
                 <PostList posts={posts} isLoaded={isLoaded} />
             </Box>
         </Flex>
     );
-};
+}
 
-export default HomeScreen;
+const styles = StyleSheet.create({
+    leftMenu: {
+        paddingVertical: 8,
+    },
+    navBtn: {
+        margin: 6,
+    },
+});

@@ -2,23 +2,17 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { SimpleLineIcons } from "@expo/vector-icons";
 import { Icon, IconButton } from "native-base";
+import IRoundedButtonProps from "../interfaces/rounted-button-props";
 
-interface IRoundedButton {
-    onPress: () => void;
-    iconSrc?: any;
-    iconName: string;
-    style?: any;
-    size?: string;
-}
 
-export default function RoundedButton({ onPress, iconName, size, style, iconSrc = SimpleLineIcons }: IRoundedButton) {
+export default function RoundedButton({ onPress, iconName, size, style, iconSrc = SimpleLineIcons, containerPadding = 4 }: IRoundedButtonProps) {
     return (
         <IconButton
             onPress={onPress}
             icon={<Icon as={iconSrc} name={iconName} />}
             borderRadius="full"
             backgroundColor="blue.400:alpha.20"
-            padding="4"
+            padding={containerPadding}
             _icon={{
                 color: "blue.500",
                 size: size ?? "md",
