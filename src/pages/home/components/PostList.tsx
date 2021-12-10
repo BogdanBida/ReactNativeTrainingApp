@@ -1,4 +1,4 @@
-import { Card, FlatList, Spinner, Text } from "native-base";
+import { Card, Center, FlatList, Spinner, Text } from "native-base";
 import React from "react";
 import IPostDTO from "../../../models/post-dto";
 import Post from "./Post";
@@ -25,7 +25,9 @@ export default function PostList({ posts, style, isLoaded }: IPostListProps) {
             initialNumToRender={5}
         />
     ) : (
-        <Spinner flex={1} size="lg" margin="auto"/>
+        <Center flex={1}>
+            <Spinner flex={1} size="lg" margin="auto"/>
+        </Center>
     );
 }
 
