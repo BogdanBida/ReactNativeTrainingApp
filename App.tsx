@@ -7,6 +7,7 @@ import SettingsScreen from "./src/pages/settings/SettingsScreen";
 import { THEME_CONFIG } from "./src/constants/theme";
 import { INITIAL_ROUTE_NAME, SCREEN_OPTIONS } from "./src/constants/navigation";
 import { Pages } from "./src/enums/pages.enum";
+import ProfileScreen from "./src/pages/profile/ProfileScreen";
 
 export const theme = extendTheme({ config: THEME_CONFIG });
 
@@ -19,6 +20,7 @@ export default function App() {
                 <Stack.Navigator initialRouteName={INITIAL_ROUTE_NAME} screenOptions={SCREEN_OPTIONS}>
                     <Stack.Screen name={Pages.Home} component={HomeScreen} />
                     <Stack.Screen name={Pages.Settings} component={SettingsScreen} />
+                    <Stack.Screen name={Pages.Profile} component={ProfileScreen} />
                 </Stack.Navigator>
             </NavigationContainer>
         </NativeBaseProvider>

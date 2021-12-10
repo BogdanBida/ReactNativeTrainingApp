@@ -1,4 +1,4 @@
-import { Center, Heading, VStack, Text, Flex } from "native-base";
+import { Center, Heading, VStack, Flex } from "native-base";
 import React from "react";
 import { CONTAINER_THEME } from "../../constants/theme";
 import RoundedButton from "../../shared/components/rounded-button";

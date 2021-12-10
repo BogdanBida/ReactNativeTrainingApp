@@ -49,8 +49,9 @@ export default function HomeScreen({ navigation }: IHomeScreenProps) {
                 }}
             >
                 <SearchModal styles={{ openBtn: [styles.navBtn, { marginVertical: "auto" }] }} onSearch={(searchParams) => setSearchParams(searchParams)}  />
-                {MENU_NAVIGATION_ITEMS.map((menuItemData) => (
+                {MENU_NAVIGATION_ITEMS.map((menuItemData, index) => (
                     <RoundedButton
+                        key={`${index}_${menuItemData.destination}`}
                         onPress={() => navigation.navigate(menuItemData.destination)}
                         {...menuItemData.btnOptions}
                         style={styles.navBtn}

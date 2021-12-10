@@ -26,7 +26,7 @@ export default function SearchForm({ onSearch }: ISearchFormProps) {
                                 const text = event.nativeEvent.text;
                                 setUserId(text.replace(REGEX_USER_ID_EXTRA_CHARS, ""));
                             }}
-                            style={{ marginVertical: "5px", flexGrow: 1 }}
+                            style={{ flexGrow: 1 }}
                         />
                         <IconButton
                             onPress={() => {
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         marginHorizontal: "auto",
     },
     cleanButton: {
-        marginHorizontal: "5px",
+        // marginHorizontal: 2,
         marginVertical: "auto",
     },
 });
