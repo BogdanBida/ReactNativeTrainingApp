@@ -11,6 +11,7 @@ import IPostDTO from "../../models/post-dto";
 import SearchForm from "./components/SearchForm";
 import ISearchParams from "./interfaces/search-params";
 import { MENU_NAVIGATION_ITEMS } from "./constants/nav-menu";
+import SearchModal from "./components/SearchModal";
 
 interface IHomeScreenProps extends IPageComponentProps {}
 
@@ -19,7 +20,9 @@ const apiService = new ApiService();
 export default function HomeScreen({ navigation }: IHomeScreenProps) {
     const [posts, setPosts] = useState<IPostDTO[]>([]);
     const [isLoaded, setIsLoaded] = useState(false);
+
     const [searchParams, setSearchParams] = useState<ISearchParams>({});
+    const [isShowSearchModal, setShowSearchModal] = useState(false);
 
     useEffect(() => {
         setIsLoaded(false);
@@ -45,13 +48,7 @@ export default function HomeScreen({ navigation }: IHomeScreenProps) {
                     shadow: 5,
                 }}
             >
-                <RoundedButton
-                    onPress={() => {}}
-                    iconName="magnifier"
-                    size="sm"
-                    containerPadding="2.5"
-                    style={[styles.navBtn, { marginVertical: "auto" }]}
-                />
+                <SearchModal styles={{ openBtn: [styles.navBtn, { marginVertical: "auto" }] }} onSearch={(searchParams) => setSearchParams(searchParams)}  />
                 {MENU_NAVIGATION_ITEMS.map((menuItemData) => (
                     <RoundedButton
                         onPress={() => navigation.navigate(menuItemData.destination)}
