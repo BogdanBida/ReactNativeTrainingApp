@@ -9,8 +9,8 @@ export default interface IUserDTO {
         city: string;
         zipcode: string;
         geo: {
-            lat: number;
-            lng: number;
+            lat: string;
+            lng: string;
         };
     };
     phone: string;

@@ -65,7 +65,7 @@ export default function SearchForm({ onSearch }: ISearchFormProps) {
 
 const styles = StyleSheet.create({
     searchButton: {
-        minWidth: "max-content",
+        // minWidth: "max-content",
         width: "50%",
         marginTop: "10px",
         marginHorizontal: "auto",

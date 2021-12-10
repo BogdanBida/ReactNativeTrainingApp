@@ -1,5 +1,6 @@
-import { Center, Heading, VStack, Flex, HStack, Avatar, Text, Spinner } from "native-base";
+import { Center, Heading, VStack, Flex, HStack, Avatar, Text, Spinner, Box } from "native-base";
 import React, { useEffect, useState } from "react";
+import MapView, { Marker } from "react-native-maps";
 // import MapView, { Marker } from "react-native-maps";
 import { CONTAINER_THEME } from "../../constants/theme";
 import { ApiEndpoints } from "../../enums/api-endpoints.enum";
@@ -55,20 +56,25 @@ const ProfileScreen = ({ navigation }: IProfileScreenProps) => {
                             <Text>Zipcode: {user.address.zipcode}</Text>
                         </VStack>
                     </VStack>
-                    {/* <MapView
-                        region={{
-                            latitude: 37.78825,
-                            longitude: -122.4324,
+                    <MapView
+                        style={{ width: "100%", height: 300, marginTop: 20 }}
+                        showsCompass={true}
+                        initialRegion={{
+                            latitude: parseFloat(user.address.geo.lat),
+                            longitude: parseFloat(user.address.geo.lng),
                             latitudeDelta: 0.0922,
                             longitudeDelta: 0.0421,
                         }}
                     >
                         <Marker
-                            coordinate={{ latitude: user.address.geo.lat, longitude: user.address.geo.lng }}
-                            title="Location"
+                            coordinate={{
+                                latitude: parseFloat(user.address.geo.lat),
+                                longitude: parseFloat(user.address.geo.lng),
+                            }}
+                            title={"User location"}
                             description={`Location: ${user.address.street}. ${user.address.city}`}
                         />
-                    </MapView> */}
+                    </MapView>
                 </>
             ) : (
                 <Spinner size="lg" />
